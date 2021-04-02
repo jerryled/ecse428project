@@ -11,14 +11,14 @@ Background:
 	  And the length of side B is <SIDEB>
 	  And the length of side C is <SIDEC> which is invalid
 	  When I request the triangle type
-	  I will be informed that it is an invalid type with <message>
+	  Then I will be informed that it is an invalid type with <message>
 
 
 		Examples:
-			|    SIDEA |    SIDEB      |  SIDEC  |   message      |
-			|    2     |    40         |  bill   |   Invalid type |
-			|    4     |    2          |  sam    |   Invalid type |
-			|    2     |    2          |  fred   |   Invalid type |
+			|    SIDEA |    SIDEB      |  SIDEC    |   message        |
+			|    2     |    40         |  "bill"   |   "Invalid type" |
+			|    4     |    2          |  "s1m"    |   "Invalid type" |
+			|    2     |    2          |  "1frd2"  |   "Invalid type" |
 
 	Scenario Outline: Alternate Flow
 	  I would like to identify a if it is triangle based on the length of three sides
@@ -27,14 +27,14 @@ Background:
 	  And the length of side B is <SIDEB> which is invalid
 	  And the length of side C is <SIDEC>
 	  When I request the triangle type
-	  I will be informed that it is an invalid type with <message>
+	  Then I will be informed that it is an invalid type with <message>
 
 
 		Examples:
-			|    SIDEA |    SIDEB      |  SIDEC  |   message      |
-			|    2     |    bill       |  40     |   Invalid type |
-			|    4     |    sam        |  2      |   Invalid type |
-			|    2     |    fred       |  2      |   Invalid type |
+			|    SIDEA |    SIDEB        |  SIDEC  |   message        |
+			|    2     |    "bill"       |  40     |   "Invalid type" |
+			|    4     |    "s1m"        |  2      |   "Invalid type" |
+			|    2     |    "1frd2"      |  2      |   "Invalid type" |
 
 
   Scenario Outline: Error Flow
@@ -43,11 +43,11 @@ Background:
     Given length of side A is <SIDEA>
     And the length of side B is <SIDEB> which is invalid
     When I request the triangle type
-    Then I should get a error message "<error>"
+    Then I should get a error message <error>
 
 
-  	Examples:
-  		|    SIDEA |    SIDEB      |     error                    |
-  		|    40    |    bill       |     Please enter three sides |
-  		|    2     |    sam        |     Please enter three sides |
-  		|    2     |    fred       |     Please enter three sides |
+  	Examples:  
+  		|  SIDEA   |    SIDEB        |     error                      |
+  		|   40     |    "bill"       |     "Please enter three sides" |
+  		|    2     |    "s1m"        |     "Please enter three sides" |
+  		|    2     |    "1frd2"      |     "Please enter three sides" |
