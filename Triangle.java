@@ -13,7 +13,6 @@ public class Triangle {
 		System.out.println("Please enter sideC");
 		String sideC = sc.nextLine(); 
 		if(isANumber(sideA) && isANumber(sideB) && isANumber(sideC)){
-			System.out.println("valid type");
 			int[] triangle = new int[3];
 			triangle = toNumber(sideA,sideB,sideC);
 			int result = decide(triangle);
@@ -40,6 +39,9 @@ public class Triangle {
     	case 4:
     		result ="Not A Triangle";
     		break;
+    	case 5:
+    		result ="Out of range";
+    		break;
     	}
     	return result;
 	}
@@ -48,7 +50,10 @@ public class Triangle {
 		int sideA = sides[0];
 		int sideB = sides[1];
 		int sideC = sides[2];
-		if (((sideA + sideB) <= sideC)||((sideB + sideC) <= sideA)||((sideA + sideC) <= sideB)) {
+		if(((sideA<=0)||(sideA>100))||((sideB<=0)||(sideB>100))||((sideC<=0)||(sideC>100))) {
+			result = 5;
+		}
+		else if (((sideA + sideB) <= sideC)||((sideB + sideC) <= sideA)||((sideA + sideC) <= sideB)) {
 			result = 4;
 		}
 		else if (sideA == sideB && sideB ==sideC) {
